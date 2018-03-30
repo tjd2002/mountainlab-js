@@ -5,22 +5,26 @@
 Note: If you have a prior version of MountainLab installed, then you should uninstall it (either via apt-get remove or by removing mountainlab/bin from your path)
 
 ### Installation outline:
-Step 1. Install prerequisites
-
-Step 2. Clone the repo and build via npm
-
-Step 3. Configure
+1. Install prerequisites
+2. Clone the repo and build via npm
+3. Configure
 
 ### Prerequisites:
-nodejs (recent version), npm (node package manager), mongodb
+**nodejs** (recent version), **npm** (node package manager), **mongodb**
+*NB. By default package managers on most unix systems will give you a very old version of nodejs, which is unlikely to work. Point them to a recent version by using the commands below.*
 
 For example, on Ubuntu 16.04
 ```
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-sudo apt-get install nodejs
-sudo apt-get install npm
-sudo apt-get install mongodb
+sudo apt-get install nodejs npm mongodb
 ```
+
+On Fedora/CentOS
+```
+curl -sL https://rpm.nodesource.com/setup_8.x | sudo bash -
+sudo yum install nodejs npm mongodb
+```
+
 ### Clone the source repo and build
 
 ```
