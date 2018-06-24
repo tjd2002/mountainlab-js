@@ -3,12 +3,14 @@ os:
   - linux
   - osx
 node_js:
- - "node"
+  - "node"
 env:
- - INSTALL_FLAG=--global
- - INSTALL_FLAG=
+  - INSTALL_FLAG=--global
+  - INSTALL_FLAG=
 install:
- - npm install $INSTALL_FLAG
+  - npm install $INSTALL_FLAG
 cache:
   directories:
     - "node_modules"
+services:
+  - mongodb
