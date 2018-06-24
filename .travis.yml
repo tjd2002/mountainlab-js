@@ -4,3 +4,11 @@ os:
   - osx
 node_js:
  - "node"
+env:
+ - INSTALL_FLAG=--global
+ - INSTALL_FLAG=
+install:
+ - npm install $INSTALL_FLAGx
+cache:
+  directories:
+    - "node_modules"
