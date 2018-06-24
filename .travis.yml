@@ -8,7 +8,7 @@ env:
  - INSTALL_FLAG=--global
  - INSTALL_FLAG=
 install:
- - npm install $INSTALL_FLAGx
+ - npm install $INSTALL_FLAG
 cache:
   directories:
     - "node_modules"
