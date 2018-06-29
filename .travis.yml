@@ -1,4 +1,5 @@
 language: node_js
+
 os:
   - linux
   - osx
@@ -16,10 +17,10 @@ install:
       "npm_local" )
         npm install . ;
         npm ls ;
-        node_modules/.bin/ml-config;;
+        ./bin/ml-config;;
       "npm_global" )
         npm install --global . ;
-        npm ls -g --depth=0 ;
+        npm ls -g mountainlab-js ;
         ml-config ;;
       "conda" )
         if [ "$TRAVIS_OS_NAME" == "osx" ]; then
