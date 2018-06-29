@@ -39,11 +39,11 @@ install:
 script:
   - if [ "$GLOBAL_INSTALL" = "true" ]; then
       npm list -g mountainlab-js;
-      echo npm prefix = `npm prefix`
+      echo npm prefix = `npm prefix`;
     else
-      PATH="$PWD"/bin:"$PATH"
-      echo npm prefix --global npm prefix --global
-    fi
+      PATH="$PWD"/bin:"$PATH";
+      echo npm prefix --global npm prefix --global;
+    fi;
   - which ml-config;
   - ml-config;
   - ml-list-processors;
