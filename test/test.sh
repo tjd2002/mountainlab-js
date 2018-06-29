@@ -1,5 +1,6 @@
 #/bin/bash
 set -e -u
-export PATH="$INIT_CWD"/bin:"$PATH"; # $INIT_CWD provided by npm run-script
+# npm runs scripts from the package root (https://docs.npmjs.com/cli/run-script)
+export PATH="$PWD"/bin:"$PATH"; 
 ml-config
 ml-list-processors
