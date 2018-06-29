@@ -8,20 +8,16 @@ node_js:
   - "node"
 
 env:
-  - INSTALL_TYPE=npm_local
-  - INSTALL_TYPE=npm_global
-  - INSTALL_TYPE=conda
+  - INSTALL_TYPE=npm_local  GLOBAL_INSTALL=false
+  - INSTALL_TYPE=npm_global GLOBAL_INSTALL=true
+  - INSTALL_TYPE=conda      GLOBAL_INSTALL=true
 
 install:
   - case "$INSTALL_TYPE" in
       "npm_local" )
-        npm install . ;
-        npm ls ;
-        ./bin/ml-config;;
+        npm install . ;;
       "npm_global" )
-        npm install --global . ;
-        npm ls -g mountainlab-js ;
-        ml-config ;;
+        npm install --global . ;;
       "conda" )
         if [ "$TRAVIS_OS_NAME" == "osx" ]; then
           wget https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -O miniconda.sh;
@@ -32,13 +28,22 @@ install:
         source $HOME/miniconda/etc/profile.d/conda.sh;
         hash -r;
         conda config --set always_yes yes --set changeps1 no --set auto_update_conda no;
-        conda create -n mljs;
-        conda activate mljs;
+        conda create -n mljs-env conda-build;
         conda info -a;
-        conda install conda-build;
+        conda activate mljs-env;
         conda build conda-recipe;
         conda_pkg=$(conda build conda-recipe --output);
-        conda install --use-local $conda_pkg;
-        npm ls -g --depth=0;
-        ml-config;;
+        conda install --use-local $conda_pkg ;;
     esac
+
+build:
+  - if [ "$GLOBAL_INSTALL" = "true" ]; then
+      npm list -g mountainlab-js;
+      echo npm prefix = `npm prefix`
+    else
+      PATH="$PWD"/bin:"$PATH"
+      echo npm prefix --global npm prefix --global
+    fi
+  - which ml-config;
+  - ml-config;
+  - ml-list-processors;
