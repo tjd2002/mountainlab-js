@@ -6,13 +6,20 @@ package:
 
 source:
   git_url: .. # relative to recipe dir
-  git_rev:
+  git_rev: e9e472c8f5850e05c6f555aef3eb10c0d968109c
 
 build:
   number: {% block build_number %}1{% endblock %}
   script:
     - tgzfile=$(npm pack)
     - npm install -g $tgzfile
+    - env
+    - ls -lah conda-recipe
+    - ls -lah "$SRC_DIR"/conda-recipe/
+    - mkdir -p "$PREFIX"/conda/etc/activate.d/
+    - mkdir -p "$PREFIX"/conda/etc/deactivate.d/
+    - cp "$SRC_DIR"/conda-recipe/mountainlab_activate.sh "$PREFIX"/conda/etc/activate.d/
+    - cp "$SRC_DIR"/conda-recipe/mountainlab_deactivate.sh "$PREFIX"/conda/etc/deactivate.d/
 
 requirements:
   build:
